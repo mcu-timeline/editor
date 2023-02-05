@@ -1,0 +1,17 @@
+.timelineWrapper {
+  height: 12rem;
+  width:  12rem;
+  margin-right: .5rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 1px dashed white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active {
+  background-color: pink;
+}
