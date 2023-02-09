@@ -1,0 +1,22 @@
+@import 'src/styles/variables';
+
+.contentWrapper {
+  display: flex;
+  height: 100%;
+
+  .moviesWrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: $SPACING_SMALL;
+    padding: $SPACING_SMALL;
+    border-right: 1px solid $BORDER_COLOR;
+  }
+
+  .itemDetailsWrapper {
+    display: flex;
+    flex: 4;
+    padding: $SPACING_SMALL;
+  }
+}
+

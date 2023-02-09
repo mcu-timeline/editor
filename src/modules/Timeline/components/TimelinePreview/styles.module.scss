@@ -1,0 +1,9 @@
+@import 'src/styles/variables';
+
+.timelineWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: $SPACING_SMALL;
+  border-right: 1px solid $BORDER_COLOR;
+}

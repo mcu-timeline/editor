@@ -1,0 +1,15 @@
+@import 'src/styles/variables';
+
+.listItemWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: $SPACING_MEDIUM $SPACING_SMALL;
+  border: 1px solid $BORDER_COLOR;
+  border-radius: $BORDER_RADIUS_MEDIUM;
+  cursor: pointer;
+}
+
+.isDragging {
+  border-style: dashed;
+}
