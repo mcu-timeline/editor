@@ -1,8 +1,10 @@
 import { FC } from "react"
-import { useDrop } from "react-dnd"
-import { ItemTypes, Movie, Timeline } from "@/_shared/types"
+
+import { Movie, Timeline } from "@/_shared/types"
+import { ItemTypes, useDnDDropControls } from "@/_shared/hooks/useDnDControls"
 
 import styles from "./styles.module.scss"
+import { TimelinePreviewItem } from './components/TimelinePreviewItem'
 
 type TimelinePreviewProps = {
   timeline: Timeline
@@ -13,27 +15,15 @@ export const TimelinePreview: FC<TimelinePreviewProps> = ({
   timeline,
   addMovie,
 }) => {
-  const [{ canDrop, isOver }, drop] = useDrop(() => ({
-    accept: ItemTypes.MOVIE,
-    drop: (item: Movie, monitor) => {
-      console.log({ item, canDrop: monitor.canDrop() })
-      addMovie(item)
-      return { title: "Timeline" }
-    },
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
-    }),
-  }))
-
-  const isActive = canDrop && isOver
+  const { drop } = useDnDDropControls<Movie>({
+    itemType: ItemTypes.MOVIE,
+    onDrop: addMovie,
+  })
 
   return (
     <div data-testid="timeline" ref={drop} className={styles.timelineWrapper}>
-      {timeline.movies.map((movie) => (
-        <div key={movie.id}>
-          <div>{movie.title}</div>
-        </div>
+      {timeline.items.map((item) => (
+        <TimelinePreviewItem key={`MOVIE-${item.id}`} movieId={item.id} />
       ))}
     </div>
   )

@@ -2,9 +2,8 @@ import { FC } from "react"
 import { useDrag } from "react-dnd"
 import classNames from "classnames"
 
-import { ItemTypes } from "@/_shared/types"
-
 import styles from "./styles.module.scss"
+import { useDndDragControls, ItemTypes } from "@/_shared/hooks/useDnDControls"
 
 type MoviePreviewProps = {
   id: string
@@ -23,20 +22,11 @@ export const ItemPreview: FC<MoviePreviewProps> = ({
   type,
   onClick,
 }) => {
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type,
-    item: { title },
-    end: (item, monitor) => {
-      const dropResult = monitor.getDropResult<DropResult>()
-      if (item && dropResult) {
-        console.log(`You dropped ${item.title} into ${dropResult.title}!`)
-      }
-    },
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-      handlerId: monitor.getHandlerId(),
-    }),
-  }))
+  const { drag, isDragging } = useDndDragControls<{
+    id: string
+    title: string
+    type: ItemTypes
+  }>({ item: { id, title, type }, itemType: type })
 
   const listItemWrapperClassNames = classNames(styles.listItemWrapper, {
     [styles.isDragging]: isDragging,
