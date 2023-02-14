@@ -1,5 +1,5 @@
 import { RootState } from "@/store"
-import { Movie } from "@/_shared/types"
+import { Movie, MovieId } from "@/_shared/types"
 import { FC } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { TimelineComponent } from "./component"
@@ -15,8 +15,8 @@ export const TimelineContainer: FC = () => {
     (state: RootState) => state.timeline.characters
   )
 
-  const handleAddMovie = (movie: Movie) => {
-    dispatch(addMovieToDraft({ movie }))
+  const handleAddMovie = (movieId: MovieId, order: number) => {
+    dispatch(addMovieToDraft({ movieId, order }))
   }
 
   return (

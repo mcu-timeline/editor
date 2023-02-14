@@ -6,11 +6,13 @@ import { removeMovieFromDraft } from "../../../../store"
 import { RootState } from "@/store"
 
 type TimeLinePreviewItemProps = {
+  index: number;
   movieId: MovieId
 }
 
 export const TimeLinePreviewItemContainer: FC<TimeLinePreviewItemProps> = ({
   movieId,
+  index,
 }) => {
   const dispatch = useDispatch()
 
@@ -25,6 +27,7 @@ export const TimeLinePreviewItemContainer: FC<TimeLinePreviewItemProps> = ({
   return (
     <TimeLinePreviewItemComponent
       movie={movie}
+      index={index}
       removeMovie={handleRemoveMovie}
     />
   )
