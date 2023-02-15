@@ -3,7 +3,7 @@ import { Movie, MovieId } from "@/_shared/types"
 import { FC } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { TimelineComponent } from "./component"
-import { addMovieToDraft } from "./store"
+import { addMovieToDraft, reorderMoviesInDraft } from "./store"
 
 export const TimelineContainer: FC = () => {
   const dispatch = useDispatch()
@@ -19,12 +19,17 @@ export const TimelineContainer: FC = () => {
     dispatch(addMovieToDraft({ movieId, order }))
   }
 
+  const handleReorderMovies = (movieId: MovieId, order: number) => {
+    dispatch(reorderMoviesInDraft({ movieId, order }))
+  }
+
   return (
     <TimelineComponent
       timeline={timeline}
       movies={movies}
       characters={characters}
       addMovie={handleAddMovie}
+      reorderMovies={handleReorderMovies}
     />
   )
 }

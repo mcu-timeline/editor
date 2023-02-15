@@ -7,6 +7,7 @@ import {
 } from "@/fixtures/Timeline"
 import { handleAddMovieToDraft } from "./handlers/addMovieToDraft.handler"
 import { handleRemoveMovieFromDraft } from "./handlers/removeMovieFromDraft.handler"
+import { handleReorderMoviesInDraft } from './handlers/reorderMoviesInDraft.handler'
 
 export interface TimelineState {
   characters: Record<string, Character>
@@ -30,10 +31,11 @@ export const timelineSlice = createSlice({
   reducers: {
     addMovieToDraft: handleAddMovieToDraft,
     removeMovieFromDraft: handleRemoveMovieFromDraft,
+    reorderMoviesInDraft: handleReorderMoviesInDraft,
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addMovieToDraft, removeMovieFromDraft } = timelineSlice.actions
+export const { addMovieToDraft, removeMovieFromDraft, reorderMoviesInDraft } = timelineSlice.actions
 
 export default timelineSlice.reducer
